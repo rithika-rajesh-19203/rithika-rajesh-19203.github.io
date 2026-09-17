@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+
+:root {
+  --zf-bg: #f5f7fb;
+  --zf-surface: #ffffff;
+  --zf-surface-alt: #f8fafc;
+  --zf-border: #e7ebf2;
+  --zf-border-strong: #d8e0eb;
+  --zf-text: #1d2736;
+  --zf-muted: #66718a;
+  --zf-muted-soft: #8a93a7;
+  --zf-primary: #0d81fd;
+  --zf-primary-strong: #0a6fe8;
+  --zf-primary-soft: rgba(13, 129, 253, 0.09);
+  --zf-success: #0d9f6e;
+  --zf-warning: #d97706;
+  --zf-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.25s ease; }
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: var(--zf-bg);
+  color: var(--zf-text);
+  font-family: Inter, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button, input, select { font: inherit; }
+button { transition: all 0.2s ease; }
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(13, 129, 253, 0.25);
+  outline-offset: 2px;
+}
+
+.app-shell {
+  background: linear-gradient(180deg, #f8fafc 0%, #f5f7fb 100%);
+}
+
+.app-shell .bg-white,
+.app-shell .bg-gray-50,
+.app-shell .bg-gray-100,
+.app-shell .bg-blue-50,
+.app-shell .bg-orange-50 {
+  box-shadow: none;
+}
+
+.app-shell .bg-white {
+  background-color: var(--zf-surface) !important;
+}
+.app-shell .bg-gray-50 {
+  background-color: var(--zf-surface-alt) !important;
+}
+.app-shell .bg-gray-100 {
+  background-color: #eef2f8 !important;
+}
+.app-shell .bg-blue-50 {
+  background-color: var(--zf-primary-soft) !important;
+}
+.app-shell .bg-orange-50 {
+  background-color: #fff5ed !important;
+}
+
+.app-shell .border-gray-200,
+.app-shell .border-gray-100,
+.app-shell .border-[#ebeaf1],
+.app-shell .border-[#d7d9e4],
+.app-shell .border-blue-200,
+.app-shell .border-green-200,
+.app-shell .border-amber-200 {
+  border-color: var(--zf-border) !important;
+}
+
+.app-shell .text-gray-900 {
+  color: var(--zf-text) !important;
+}
+.app-shell .text-gray-700,
+.app-shell .text-gray-800,
+.app-shell .text-gray-600,
+.app-shell .text-[#6d7188] {
+  color: var(--zf-muted) !important;
+}
+.app-shell .text-gray-500,
+.app-shell .text-gray-400,
+.app-shell .text-[#8a93a7] {
+  color: var(--zf-muted-soft) !important;
+}
+
+.app-shell .bg-[#0D81FD],
+.app-shell .bg-blue-600 {
+  background-color: var(--zf-primary) !important;
+}
+.app-shell .bg-[#0D81FD]:hover,
+.app-shell .bg-blue-600:hover {
+  background-color: var(--zf-primary-strong) !important;
+}
+
+.app-shell .text-[#0D81FD],
+.app-shell .text-blue-600,
+.app-shell .text-blue-700 {
+  color: var(--zf-primary) !important;
+}
+
+.app-shell .rounded-lg,
+.app-shell .rounded,
+.app-shell .rounded-md,
+.app-shell .rounded-xl {
+  border-radius: 12px;
+}
+
+.app-shell .shadow-2xl,
+.app-shell .shadow-xl {
+  box-shadow: var(--zf-shadow) !important;
+}
+
+.app-shell input,
+.app-shell select,
+.app-shell textarea,
+.app-shell button {
+  border-radius: 10px;
+}
+
+.app-shell .overflow-y-auto::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.app-shell .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #d4dae7;
+  border-radius: 999px;
+}
+.app-shell .overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.design-modal-backdrop {
+  background: rgba(15, 23, 42, 0.38);
+}
+.design-modal-card {
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.18);
+}
+.design-modal-header,
+.design-modal-footer {
+  background: rgba(255, 255, 255, 0.96);
+}
+.design-modal-body {
+  background: #f8fafc;
+}
+.design-modal-title {
+  letter-spacing: -0.01em;
+}
+.design-modal-close {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+.design-modal-close:hover {
+  background: #f3f6fb;
+}
+
+@font-face {
+  font-family: "Inter:Regular";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter:Medium";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}

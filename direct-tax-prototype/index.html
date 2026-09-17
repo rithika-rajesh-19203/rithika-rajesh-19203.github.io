@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Direct Tax new flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: #f3f4f6;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (async () => {
+        const [appSource, cssSource] = await Promise.all([
+          fetch("./src/App.tsx").then((r) => r.text()),
+          fetch("./src/index.css").then((r) => r.text()),
+        ]);
+
+        const style = document.createElement("style");
+        style.textContent = cssSource.replace(/@import 'tailwindcss';\s*/g, "");
+        document.head.appendChild(style);
+
+        const source = appSource
+          .replace(
+            /^import\s+\{\s*useState,\s*useEffect,\s*useRef\s*\}\s+from\s+["']react["'];?\s*$/m,
+            "const { useState, useEffect, useRef } = React;"
+          )
+          .replace(/^export default function App\(\)\s*\{/m, "function App() {");
+
+        const transformed = Babel.transform(source, {
+          presets: [
+            ["typescript", { ignoreExtensions: true }],
+            ["react", { runtime: "classic" }],
+          ],
+          filename: "App.tsx",
+        }).code;
+
+        eval(transformed);
+        ReactDOM.createRoot(document.getElementById("root")).render(
+          React.createElement(React.StrictMode, null, React.createElement(App))
+        );
+      })().catch((error) => {
+        const pre = document.createElement("pre");
+        pre.style.cssText = "padding:16px;color:#b91c1c;white-space:pre-wrap";
+        pre.textContent = String(error && error.stack ? error.stack : error);
+        document.body.appendChild(pre);
+      });
+    </script>
+  </body>
+</html>

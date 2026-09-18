@@ -339,6 +339,61 @@ function areAnswerMapsEqual(
   return leftKeys.every((key) => left[key] === right[key]);
 }
 
+function pickRandom<T>(items: T[]) {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
+function getRandomQuestionnaireAnswers() {
+  return Object.fromEntries(
+    QUESTIONNAIRE.map((question) => [question.id, pickRandom(question.options)])
+  ) as Record<string, string>;
+}
+
+function getRandomTaxReturnSettingsForm(): TaxReturnSettingsForm {
+  const state = pickRandom(Object.keys(STATE_FORMS));
+  const idSuffix = Math.random().toString(36).slice(2, 8).toUpperCase();
+  const zipBase = String(10000 + Math.floor(Math.random() * 89999));
+  const phoneBase = String(1000000000 + Math.floor(Math.random() * 8999999999));
+
+  return {
+    state,
+    salesTaxAccountNumber: `SLS-${idSuffix}`,
+    prepaymentRequired: pickRandom(["Yes", "No"]),
+    legalEntityName: pickRandom([
+      "Northwind Commerce LLC",
+      "BluePeak Retail Inc.",
+      "Summit Cart Solutions",
+      "Cedar Point Goods LLC",
+      "Brightlane Markets Inc.",
+    ]),
+    salesTaxOnly: pickRandom(["Yes", "No"]),
+    efileUsername: pickRandom([
+      "northwind.tax",
+      "bluepeak.filing",
+      "summit.directtax",
+      "cedarpoint.efile",
+      "brightlane.taxops",
+    ]),
+    addressLine1: pickRandom([
+      "245 Market Street",
+      "18 Riverfront Avenue",
+      "920 Commerce Blvd",
+      "77 Grand Central Drive",
+      "410 Lakeview Parkway",
+    ]),
+    addressLine2: pickRandom([
+      "",
+      "Suite 210",
+      "Floor 4",
+      "Unit B",
+      "Building 3",
+    ]),
+    zipCode: zipBase,
+    phone: phoneBase.slice(0, 10),
+    taxpayerId: String(100000000 + Math.floor(Math.random() * 899999999)),
+  };
+}
+
 /* ─── Sub-components ─────────────────────────────────── */
 
 function Toggle({ checked, onChange }: { checked: boolean; onChange: () => void }) {
@@ -1080,6 +1135,10 @@ function QuestionnaireSection({
     setExpanded(false);
   }
 
+  function autofillAnswers() {
+    setDraftAnswers(getRandomQuestionnaireAnswers());
+  }
+
   const allAnswered = QUESTIONNAIRE.every((q) => !!answers[q.id]);
   const draftComplete = QUESTIONNAIRE.every((q) => !!draftAnswers[q.id]);
   const hasUnsavedChanges = !areAnswerMapsEqual(draftAnswers, answers);
@@ -1176,6 +1235,14 @@ function QuestionnaireSection({
               <span className="text-[10px] text-gray-400">
                 {draftComplete ? "All questions answered" : "You can save partial responses"}
               </span>
+              <button
+                type="button"
+                onClick={autofillAnswers}
+                className="px-4 py-1.5 rounded text-[11px] font-medium text-[#0D81FD] border border-[#bfdbfe] bg-blue-50 hover:bg-blue-100 transition-colors"
+                style={{ fontFamily: "'Inter:Medium', sans-serif" }}
+              >
+                Autofill
+              </button>
               <button
                 type="button"
                 onClick={saveAnswers}
@@ -1672,6 +1739,10 @@ function TaxReturnSettingsModal({
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function autofillForm() {
+    setForm(getRandomTaxReturnSettingsForm());
+  }
+
   useEffect(() => {
     firstInputRef.current?.focus();
   }, []);
@@ -1867,6 +1938,13 @@ function TaxReturnSettingsModal({
 
         {/* Footer */}
         <div className="design-modal-footer flex items-center gap-3 px-8 py-4 border-t border-[#edf1f7] bg-white">
+          <button
+            onClick={autofillForm}
+            className="px-5 py-2 text-[13px] text-[#0D81FD] border border-[#bfdbfe] bg-blue-50 rounded hover:bg-blue-100 transition-colors"
+            style={{ fontFamily: "'Inter:Medium', sans-serif" }}
+          >
+            Autofill
+          </button>
           <button
             onClick={requiredFilled ? () => onSave(form) : undefined}
             disabled={!requiredFilled}

@@ -1975,7 +1975,7 @@ function TaxReturnSettingsModal({
 /* ─── Main App ───────────────────────────────────────── */
 export default function App() {
   const [page, setPage] = useState<AppPage>("overview");
-  const [taxEnabled, setTaxEnabled] = useState(true);
+  const [taxEnabled, setTaxEnabled] = useState(false);
   const [showSettingsForm, setShowSettingsForm] = useState(false);
   const [showAvalaraModal, setShowAvalaraModal] = useState(false);
   const [connected, setConnected] = useState(false);
@@ -2202,7 +2202,13 @@ export default function App() {
                   Tax Returns Settings
                 </h1>
                 <div className="flex items-center gap-4">
-                  <button className="text-[12px] text-gray-600 hover:text-gray-800">Disable Tax</button>
+                  <button
+                    type="button"
+                    onClick={handleToggle}
+                    className="text-[12px] text-gray-600 hover:text-gray-800"
+                  >
+                    {taxEnabled ? "Disable Tax" : "Enable Tax"}
+                  </button>
                   <button className="flex items-center gap-1 text-[12px] text-gray-600 hover:text-gray-800">
                     <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" /></svg>
                     Find Accountants

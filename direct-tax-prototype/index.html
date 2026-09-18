@@ -22,9 +22,10 @@
     <div id="root"></div>
     <script>
       (async () => {
+        const assetVersion = "20260918-autofill-1";
         const [appSource, cssSource] = await Promise.all([
-          fetch("./src/App.tsx").then((r) => r.text()),
-          fetch("./src/index.css").then((r) => r.text()),
+          fetch(`./src/App.tsx?v=${assetVersion}`).then((r) => r.text()),
+          fetch(`./src/index.css?v=${assetVersion}`).then((r) => r.text()),
         ]);
 
         const style = document.createElement("style");

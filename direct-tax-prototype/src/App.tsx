@@ -1102,7 +1102,7 @@ function QuestionnaireLauncher({
           </div>
           <div className="min-w-0">
             <h3 className="text-[12px] font-medium text-gray-900" style={{ fontFamily: "'Inter:Medium', sans-serif" }}>
-              Business Questionnaire
+              Answer questions to configure tax return
             </h3>
             <p className="text-[10px] text-[#8a93a7] mt-0.5">{statusLabel}</p>
           </div>
@@ -1113,7 +1113,7 @@ function QuestionnaireLauncher({
           className="inline-flex items-center gap-1 text-[11px] text-[#0D81FD] font-medium hover:underline flex-shrink-0"
           style={{ fontFamily: "'Inter:Medium', sans-serif" }}
         >
-          View questionnaire
+          Answer questions to configure tax return
           <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current">
             <path d="M7 10l5 5 5-5z" />
           </svg>
@@ -1167,10 +1167,10 @@ function QuestionnaireModal({
         <div className="design-modal-header flex items-center justify-between px-6 py-5 border-b border-[#edf1f7]">
           <div>
             <h3 className="design-modal-title text-[17px] font-medium text-gray-900" style={{ fontFamily: "'Inter:Medium', sans-serif" }}>
-              Business Questionnaire
+              Answer questions to configure tax return
             </h3>
             <p className="mt-1 text-[11px] leading-5 text-[#6d7188]">
-              Answer these questions to auto-suggest nexus regions and eligible forms.
+              Answer these questions to configure the tax return workflow and auto-suggest nexus regions.
             </p>
           </div>
           <button onClick={onClose} className="design-modal-close text-gray-300 hover:text-gray-500 transition-colors">
@@ -1313,10 +1313,10 @@ function StateQuestionnaireModal({
         <div className="design-modal-header flex items-center justify-between px-6 py-5 border-b border-[#edf1f7]">
           <div>
             <h3 className="design-modal-title text-[17px] font-medium text-gray-900" style={{ fontFamily: "'Inter:Medium', sans-serif" }}>
-              {state} questionnaire
+              {state} tax return questions
             </h3>
             <p className="mt-1 text-[11px] leading-5 text-[#6d7188]">
-              Review the questionnaire for this nexus region and save the answers in a pop-up.
+              Answer the questions for this nexus region to refine the suggested tax return setup.
             </p>
           </div>
           <button onClick={onClose} className="design-modal-close text-gray-300 hover:text-gray-500 transition-colors">

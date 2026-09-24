@@ -1113,7 +1113,7 @@ function QuestionnaireLauncher({
           className="inline-flex items-center gap-1 text-[11px] text-[#0D81FD] font-medium hover:underline flex-shrink-0"
           style={{ fontFamily: "'Inter:Medium', sans-serif" }}
         >
-          Answer questions to configure tax return
+          View questionnaire
           <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current">
             <path d="M7 10l5 5 5-5z" />
           </svg>

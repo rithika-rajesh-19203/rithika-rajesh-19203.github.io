@@ -1170,7 +1170,7 @@ function QuestionnaireModal({
               Business Questionnaire
             </h3>
             <p className="mt-1 text-[11px] leading-5 text-[#6d7188]">
-              These answers will be used to suggest nexus regions and eligible forms in the next step.
+              Answer these questions to auto-suggest nexus regions and eligible forms.
             </p>
           </div>
           <button onClick={onClose} className="design-modal-close text-gray-300 hover:text-gray-500 transition-colors">
@@ -1555,7 +1555,7 @@ function NexusStep({
                   className="inline-flex w-full items-center justify-start gap-1 rounded-[999px] border border-[#e7edf7] bg-[#f7faff] px-4 py-2.5 text-left text-[12px] text-[#5e6b82] font-medium hover:bg-[#f0f6ff] transition-colors"
                   style={{ fontFamily: "'Inter:Medium', sans-serif" }}
                 >
-                  Answer questionnaire (optional)
+                  Answer questionnaire to auto-suggest tax forms (optional)
                 </button>
               </div>
             )}

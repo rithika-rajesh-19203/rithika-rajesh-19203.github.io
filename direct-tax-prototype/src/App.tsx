@@ -1254,40 +1254,30 @@ function QuestionnaireLauncher({
 }) {
   const allAnswered = QUESTIONNAIRE.every((q) => !!answers[q.id]);
   const hasSavedAnswers = Object.keys(answers).length > 0;
-  const statusLabel = allAnswered
-    ? "Complete"
-    : hasSavedAnswers
-    ? "Saved"
-    : "Optional";
 
   return (
-    <div className="bg-white border border-[#ebeaf1] rounded-lg px-4 py-3">
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-50 border border-[#ebeaf1]">
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-[#0D81FD]">
-              <path d="M19 3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2Zm0 16H5V5h14v14ZM7 7h10v2H7V7Zm0 4h10v2H7v-2Zm0 4h6v2H7v-2Z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <h3 className="text-[12px] font-medium text-gray-900" style={{ fontFamily: "'Inter:Medium', sans-serif" }}>
-              Answer questions to configure tax return
-            </h3>
-            <p className="text-[10px] text-[#8a93a7] mt-0.5">{statusLabel}</p>
-          </div>
-        </div>
-        <button
-          type="button"
-          onClick={onOpen}
-          className="inline-flex items-center gap-1 text-[11px] text-[#0D81FD] font-medium hover:underline flex-shrink-0"
-          style={{ fontFamily: "'Inter:Medium', sans-serif" }}
-        >
-          View questionnaire
-          <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current">
-            <path d="M7 10l5 5 5-5z" />
+    <div className="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5">
+      <div className="flex items-center gap-3 min-w-0">
+        <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-[#ebeaf1] bg-white">
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-[#0D81FD]">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2Zm0 16H5V5h14v14ZM7 7h10v2H7V7Zm0 4h10v2H7v-2Zm0 4h6v2H7v-2Z" />
           </svg>
-        </button>
+        </div>
+        <p className="text-[12px] text-[#6d7188]">
+          {allAnswered ? "Questionnaire complete." : hasSavedAnswers ? "Questionnaire saved." : "Questionnaire optional."}
+        </p>
       </div>
+      <button
+        type="button"
+        onClick={onOpen}
+        className="inline-flex items-center gap-1 text-[11px] text-[#0D81FD] font-medium hover:underline flex-shrink-0"
+        style={{ fontFamily: "'Inter:Medium', sans-serif" }}
+      >
+        View questionnaire
+        <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current">
+          <path d="M7 10l5 5 5-5z" />
+        </svg>
+      </button>
     </div>
   );
 }
